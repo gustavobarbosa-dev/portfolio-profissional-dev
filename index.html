@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio - Gustavo Dutra Luiz Barbosa</title>
+
+    <link rel="icon" type="image/png" href="imagens/favicon.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #0a0a0a; color: #e0e0e0; }
+        .animated-gradient-border { position: relative; background-clip: padding-box; border: 2px solid transparent; }
+        .animated-gradient-border::before { content: ''; position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: -1; margin: -2px; border-radius: inherit; background: linear-gradient(90deg, #8A2BE2, #4A00E0, #00D4FF, #8A2BE2); background-size: 400% 400%; animation: gradient-animation 10s ease infinite; }
+        @keyframes gradient-animation { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .aurora-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -10; overflow: hidden; filter: blur(100px) saturate(150%); }
+        .aurora-shape1 { position: absolute; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(74,0,224,0.3) 0%, rgba(74,0,224,0) 70%); top: -25vw; left: -25vw; animation: move-aurora1 20s infinite alternate ease-in-out; }
+        .aurora-shape2 { position: absolute; width: 40vw; height: 40vw; background: radial-gradient(circle, rgba(0,212,255,0.3) 0%, rgba(0,212,255,0) 70%); bottom: -20vw; right: -20vw; animation: move-aurora2 25s infinite alternate ease-in-out; }
+        @keyframes move-aurora1 { from { transform: translate(0, 0) rotate(0deg); } to { transform: translate(10vw, 15vh) rotate(60deg); } }
+        @keyframes move-aurora2 { from { transform: translate(0, 0) rotate(0deg); } to { transform: translate(-15vw, -10vh) rotate(-70deg); } }
+        .fade-in-section { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
+        .nav-link { position: relative; padding: 8px 4px; }
+        .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 50%; transform: translateX(-50%); background-color: #00D4FF; transition: width 0.3s ease-in-out; }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .scroll-down-arrow { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); } 40% { transform: translateX(-50%) translateY(-20px); } 60% { transform: translateX(-50%) translateY(-10px); } }
+
+        /* ANIMAÇÃO DE DIGITAÇÃO RESTAURADA E RESPONSIVA */
+        .typewriter-text {
+            display: inline-block;
+            overflow: hidden;
+            border-right: .15em solid #00D4FF;
+            animation: blink-caret .75s step-end infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #00D4FF; }
+        }
+
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <div class="aurora-background">
+        <div class="aurora-shape1"></div>
+        <div class="aurora-shape2"></div>
+    </div>
+    <div id="particles-js" class="absolute top-0 left-0 w-full h-screen z-[-5]"></div>
+
+    <!-- CABEÇALHO COM PADDING AJUSTADO PARA MOBILE -->
+    <header class="fixed top-0 left-0 w-full bg-gray-950/70 backdrop-blur-md z-50 border-b border-gray-800/50">
+        <div class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-md border-2 border-cyan-400/50 flex items-center justify-center">
+                    <i data-lucide="terminal-square" class="text-cyan-400"></i>
+                </div>
+            </a>
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#sobre" data-navlink="sobre" class="nav-link text-gray-300 hover:text-white transition-colors duration-300">Sobre</a>
+                <a href="#projetos" data-navlink="projetos" class="nav-link text-gray-300 hover:text-white transition-colors duration-300">Projetos</a>
+                <a href="#habilidades" data-navlink="habilidades" class="nav-link text-gray-300 hover:text-white transition-colors duration-300">Habilidades</a>
+                <a href="#futurismo" data-navlink="futurismo" class="nav-link text-gray-300 hover:text-white transition-colors duration-300">Reflexões</a>
+                <a href="#contato" class="animated-gradient-border rounded-lg px-6 py-2 text-white font-semibold text-sm hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300">
+                    Contato
+                </a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-white p-2">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+        <!-- MENU MOBILE MELHORADO -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-950/80 backdrop-blur-sm absolute top-full left-0 w-full">
+            <a href="#sobre" class="block py-3 px-6 text-gray-300 hover:bg-gray-800 transition-colors">Sobre</a>
+            <a href="#projetos" class="block py-3 px-6 text-gray-300 hover:bg-gray-800 transition-colors">Projetos</a>
+            <a href="#habilidades" class="block py-3 px-6 text-gray-300 hover:bg-gray-800 transition-colors">Habilidades</a>
+            <a href="#futurismo" class="block py-3 px-6 text-gray-300 hover:bg-gray-800 transition-colors">Reflexões</a>
+            <a href="#contato" class="block py-3 px-6 text-gray-300 hover:bg-gray-800 transition-colors">Contato</a>
+        </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL COM PADDING RESPONSIVO -->
+    <main class="container mx-auto px-4 sm:px-6">
+        <!-- SECÇÃO HERO CORRIGIDA PARA MOBILE -->
+        <section id="hero" class="h-screen flex flex-col justify-center items-center text-center relative">
+            <div class="w-full">
+                <!-- TÍTULO COM ANIMAÇÃO RESTAURADA E RESPONSIVA -->
+                <div class="hidden md:inline-block">
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight text-center">
+                        <span class="typewriter-text" style="width: 0; animation: typing 2.5s steps(28, end) forwards, blink-caret .75s step-end infinite;">Desenvolvedor & Futurista</span>
+                    </h1>
+                </div>
+                <div class="block md:hidden">
+                    <h1 class="text-4xl sm:text-5xl font-bold text-white leading-tight">Desenvolvedor</h1>
+                    <h1 class="text-4xl sm:text-5xl font-bold text-white leading-tight">& Futurista</h1>
+                </div>
+            </div>
+            <p class="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mb-8 mt-4">
+                Estudante de Análise e Desenvolvimento de Sistemas no UniSenac Pelotas, explorando a intersecção entre código, inteligência artificial e as possibilidades da consciência digital.
+            </p>
+            <a href="#sobre" class="animated-gradient-border rounded-lg px-8 py-3 text-white font-semibold text-lg hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300">
+                Explorar meu universo
+            </a>
+            <div class="scroll-down-arrow">
+                <i data-lucide="arrow-down" class="text-white w-8 h-8"></i>
+            </div>
+        </section>
+
+        <!-- SECÇÃO SOBRE MIM COM ALINHAMENTO CORRIGIDO -->
+        <section id="sobre" class="py-16 md:py-20 fade-in-section">
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12 items-center">
+                <!-- Imagem centralizada em mobile -->
+                <div class="md:col-span-2 flex justify-center">
+                    <div class="w-56 h-56 md:w-64 md:h-64 rounded-full animated-gradient-border p-1">
+                        <img src="imagens/perfil.png" alt="Foto de perfil" class="w-full h-full object-cover rounded-full" onerror="this.onerror=null;this.src='https://placehold.co/256x256/1a1a1a/e0e0e0?text=Erro!';">
+                    </div>
+                </div>
+                <!-- Texto centralizado em mobile e alinhado à esquerda em desktop -->
+                <div class="md:col-span-3 text-center md:text-left">
+                    <h2 class="text-3xl font-bold text-white mb-4">Quem Sou Eu</h2>
+                    <p class="mb-4 text-gray-300">Olá! Sou Gustavo Barbosa, um apaixonado por tecnologia cursando Análise e Desenvolvimento de Sistemas. Minha jornada é movida pela curiosidade sobre como a tecnologia, especialmente a IA, pode moldar nosso futuro e expandir a experiência humana.</p>
+                    <p class="mb-6 text-gray-300">Quando não estou codificando ou estudando algoritmos, estou refletindo sobre conceitos como o upload da mente e o futuro da consciência.</p>
+                    <!-- Ícones sociais centralizados em mobile e à esquerda em desktop -->
+                    <div class="flex space-x-6 justify-center md:justify-start">
+                        <a href="https://github.com/gustavobarbosa-dev" target="_blank" class="text-gray-400 hover:text-white transition-transform hover:scale-125 duration-300"><i data-lucide="github" class="w-6 h-6"></i></a>
+                        <a href="https://www.linkedin.com/in/gustavo-dutra-luiz-barbosa-96a2b9379" target="_blank" class="text-gray-400 hover:text-white transition-transform hover:scale-125 duration-300"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-transform hover:scale-125 duration-300"><i data-lucide="instagram" class="w-6 h-6"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projetos" class="py-16 md:py-20 fade-in-section">
+            <h2 class="text-3xl font-bold text-white text-center mb-12">Projetos em Destaque</h2>
+            <!-- Grelha de projetos agora com 1 coluna em mobile -->
+            <div id="github-projects" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <p class="text-center text-gray-400 col-span-full">Buscando projetos no GitHub...</p>
+            </div>
+        </section>
+
+        <section id="habilidades" class="py-16 md:py-20 fade-in-section">
+            <h2 class="text-3xl font-bold text-white text-center mb-12">Minhas Habilidades</h2>
+            <div id="tech-skills" class="max-w-4xl mx-auto flex flex-wrap justify-center gap-4 text-center">
+                 <p class="text-center text-gray-400">Analisando tecnologias dos projetos...</p>
+            </div>
+        </section>
+
+        <section id="futurismo" class="py-16 md:py-20 fade-in-section">
+            <h2 class="text-3xl font-bold text-white text-center mb-12">Reflexões Sobre o Futuro</h2>
+            <!-- Grelha de reflexões agora com 1 coluna em mobile -->
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-900/50 p-6 rounded-lg animated-gradient-border">
+                    <div class="flex items-center text-cyan-400 mb-3">
+                        <i data-lucide="brain-circuit" class="w-8 h-8 mr-3"></i>
+                        <h3 class="text-xl font-bold text-white">O Futuro da Consciência</h3>
+                    </div>
+                    <p class="text-gray-400">A ideia de transferir uma consciência para um substrato digital transcende a ficção. Analiso os desafios técnicos e as implicações filosóficas sobre identidade e o que significa ser humano após a separação da biologia.</p>
+                </div>
+                <div class="bg-gray-900/50 p-6 rounded-lg animated-gradient-border">
+                    <div class="flex items-center text-cyan-400 mb-3">
+                        <i data-lucide="sparkles" class="w-8 h-8 mr-3"></i>
+                        <h3 class="text-xl font-bold text-white">IA: A Nova Parceira Criativa</h3>
+                    </div>
+                    <p class="text-gray-400">A IA Generativa está a redefinir os limites da criatividade. Exploro como modelos de linguagem e de imagem não são apenas ferramentas, mas colaboradores no processo criativo, desde a geração de código até à composição de arte.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato" class="py-16 md:py-20 fade-in-section">
+            <div class="text-center max-w-2xl mx-auto">
+                <h2 class="text-3xl font-bold text-white mb-4">Vamos Construir o Futuro Juntos?</h2>
+                <p class="text-gray-400 mb-8">Estou sempre aberto a novas conexões, projetos e conversas sobre tecnologia e o futuro. Sinta-se à vontade para me contatar.</p>
+
+                <form id="contact-form" action="https://formspree.io/f/xgvlrvpn" method="POST" class="w-full max-w-lg mx-auto text-left">
+                    <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="grid-first-name">Nome</label>
+                            <input class="appearance-none block w-full bg-gray-800/50 text-gray-300 border border-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-gray-800 focus:border-cyan-500" id="grid-first-name" type="text" name="name" placeholder="Seu nome" required>
+                        </div>
+                        <div class="w-full md:w-1/2 px-3">
+                            <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="grid-email">Email</label>
+                            <input class="appearance-none block w-full bg-gray-800/50 text-gray-300 border border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-gray-800 focus:border-cyan-500" id="grid-email" type="email" name="email" placeholder="seu@email.com" required>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="w-full px-3">
+                            <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="grid-message">Mensagem</label>
+                            <textarea class="appearance-none block w-full bg-gray-800/50 text-gray-300 border border-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-gray-800 focus:border-cyan-500 h-48 resize-none" id="grid-message" name="message" placeholder="Sua mensagem..." required></textarea>
+                        </div>
+                    </div>
+                    <div class="flex justify-center">
+                         <button type="submit" class="animated-gradient-border inline-block rounded-lg px-8 py-3 text-white font-semibold text-lg hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300">
+                             Enviar Mensagem
+                         </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-gray-800/50 mt-16 md:mt-20">
+        <div class="container mx-auto px-4 sm:px-6 py-6 text-center text-gray-500">
+            <p>© 2025 Gustavo Dutra Luiz Barbosa. Todos os direitos reservados.</p>
+            <p>Construído com café e código.</p>
+        </div>
+    </footer>
+
+    <!-- BOTÃO VOLTAR AO TOPO COM VISIBILIDADE MELHORADA -->
+    <button id="scroll-to-top" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[100] w-12 h-12 rounded-full bg-gray-900/50 backdrop-blur-md border border-cyan-500/50 text-cyan-400 flex items-center justify-center opacity-0 translate-y-4 pointer-events-none transition-all duration-300 hover:bg-cyan-900/70 hover:scale-110">
+        <i data-lucide="arrow-up" class="w-6 h-6"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        lucide.createIcons();
+
+        // Menu Mobile
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinksMobile = mobileMenu.querySelectorAll('a');
+        mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+        navLinksMobile.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Animação de Fade-in no Scroll
+        const fadeInSections = document.querySelectorAll('.fade-in-section');
+        const fadeInObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); } });
+        }, { threshold: 0.1 });
+        fadeInSections.forEach(section => { fadeInObserver.observe(section); });
+
+        // SCRIPT DO MENU ATIVO CORRIGIDO
+        const navLinks = document.querySelectorAll('header nav a[data-navlink]');
+        const sections = document.querySelectorAll('main section');
+        const activeNavObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const currentSectionId = entry.target.id;
+                    navLinks.forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('data-navlink') === currentSectionId);
+                    });
+                }
+            });
+        }, { rootMargin: '0px 0px -70% 0px' });
+        sections.forEach(section => activeNavObserver.observe(section));
+
+        // SCRIPT DO BOTÃO VOLTAR AO TOPO
+        const scrollToTopButton = document.getElementById('scroll-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTopButton.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                scrollToTopButton.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+            } else {
+                scrollToTopButton.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                scrollToTopButton.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+            }
+        });
+        scrollToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Configuração do Particles.js
+        particlesJS('particles-js', { "particles": { "number": { "value": 80, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#ffffff" }, "shape": { "type": "hexagon", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 6 } }, "opacity": { "value": 0.9, "random": true, "anim": { "enable": true, "speed": 0.5, "opacity_min": 0.2, "sync": false } }, "size": { "value": 6, "random": true, "anim": { "enable": false, "speed": 40, "size_min": 0.1, "sync": false } }, "line_linked": { "enable": true, "distance": 150, "color": "#8A2BE2", "opacity": 0.6, "width": 1.5 }, "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } } }, "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }, "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.8 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 200, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } } }, "retina_detect": true });
+
+        // DICIONÁRIO DE TECNOLOGIAS
+        const techDetails = { 'html': { name: 'HTML5', color: '#E34F26', icon: 'devicon-html5-plain' }, 'css': { name: 'CSS3', color: '#1572B6', icon: 'devicon-css3-plain' }, 'javascript': { name: 'JavaScript', color: '#F7DF1E', icon: 'devicon-javascript-plain' }, 'typescript': { name: 'TypeScript', color: '#3178C6', icon: 'devicon-typescript-plain' }, 'react': { name: 'React', color: '#61DAFB', icon: 'devicon-react-original' }, 'nextjs': { name: 'Next.js', color: '#FFFFFF', icon: 'devicon-nextjs-original' }, 'vuejs': { name: 'Vue.js', color: '#4FC08D', icon: 'devicon-vuejs-plain' }, 'angular': { name: 'Angular', color: '#DD0031', icon: 'devicon-angularjs-plain' }, 'tailwind-css': { name: 'Tailwind CSS', color: '#06B6D4', icon: 'devicon-tailwindcss-plain' }, 'nodejs': { name: 'Node.js', color: '#339933', icon: 'devicon-nodejs-plain' }, 'python': { name: 'Python', color: '#3776AB', icon: 'devicon-python-plain' }, 'java': { name: 'Java', color: '#007396', icon: 'devicon-java-plain' }, 'php': { name: 'PHP', color: '#777BB4', icon: 'devicon-php-plain' }, 'csharp': { name: 'C#', color: '#239120', icon: 'devicon-csharp-plain' }, 'go': { name: 'Go', color: '#00ADD8', icon: 'devicon-go-plain' }, 'mysql': { name: 'MySQL', color: '#4479A1', icon: 'devicon-mysql-plain' }, 'postgresql': { name: 'PostgreSQL', color: '#4169E1', icon: 'devicon-postgresql-plain' }, 'mongodb': { name: 'MongoDB', color: '#47A248', icon: 'devicon-mongodb-plain' }, 'git': { name: 'Git', color: '#F05032', icon: 'devicon-git-plain' }, 'github': { name: 'GitHub', color: '#FFFFFF', icon: 'devicon-github-original' }, 'docker': { name: 'Docker', color: '#2496ED', icon: 'devicon-docker-plain' }, 'figma': { name: 'Figma', color: '#F24E1E', icon: 'devicon-figma-plain' }, 'vscode': { name: 'VS Code', color: '#007ACC', icon: 'devicon-vscode-plain' }, 'linux': { name: 'Linux', color: '#FCC624', icon: 'devicon-linux-plain' } };
+
+        // SCRIPT DO GITHUB
+        document.addEventListener('DOMContentLoaded', () => {
+            const githubUsername = 'gustavobarbosa-dev';
+            const projectsContainer = document.getElementById('github-projects');
+            const skillsContainer = document.getElementById('tech-skills');
+            const cacheKey = `githubData_${githubUsername}`;
+            const cacheDuration = 3600 * 1000;
+
+            const languageIcons = { 'JavaScript': 'devicon-javascript-plain', 'TypeScript': 'devicon-typescript-plain', 'HTML': 'devicon-html5-plain', 'CSS': 'devicon-css3-plain', 'Python': 'devicon-python-plain', 'Java': 'devicon-java-plain', 'C#': 'devicon-csharp-plain', 'PHP': 'devicon-php-plain', 'C++': 'devicon-cplusplus-plain', 'Shell': 'devicon-bash-plain', 'Ruby': 'devicon-ruby-plain', 'Go': 'devicon-go-plain', 'Dart': 'devicon-dart-plain', 'Kotlin': 'devicon-kotlin-plain', 'Swift': 'devicon-swift-plain', 'Default': 'devicon-devicon-plain' };
+
+            function renderData(data) {
+                const { repos, allLanguages } = data;
+                projectsContainer.innerHTML = '';
+                skillsContainer.innerHTML = '';
+
+                if (repos.length === 0) {
+                    projectsContainer.innerHTML = `<p class="text-center text-gray-400 col-span-full">Nenhum repositório público encontrado.</p>`;
+                    return;
+                }
+
+                const allTopics = new Set();
+                repos.forEach(repo => { repo.topics.forEach(topic => allTopics.add(topic.toLowerCase())); });
+
+                if (allTopics.size > 0) {
+                    const skillsList = Array.from(allTopics).map(skill => {
+                        const details = techDetails[skill] || { name: skill, color: '#4A5568', icon: null };
+                        const textColor = (details.color === '#FFFFFF' || details.color === '#FCC624') ? '#1a1a1a' : '#FFFFFF';
+
+                        return `
+                            <div class="flex items-center gap-2 rounded-lg px-4 py-2 text-sm transition-transform hover:scale-110 duration-300"
+                                 style="background-color: ${details.color}20; border: 1px solid ${details.color};">
+                                ${details.icon ? `<i class="${details.icon} text-xl" style="color: ${details.color};"></i>` : ''}
+                                <span class="font-semibold" style="color: ${textColor};">
+                                    ${details.name}
+                                </span>
+                            </div>`;
+                    }).join('');
+                    skillsContainer.innerHTML = `<div class="max-w-4xl mx-auto flex flex-wrap justify-center gap-4 text-center">${skillsList}</div>`;
+                } else {
+                    skillsContainer.innerHTML = `<p class="text-center text-gray-400">Adicione "topics" nos seus repositórios do GitHub para listar suas habilidades aqui!</p>`;
+                }
+
+                repos.forEach((repo, index) => {
+                    const repoLanguages = allLanguages[index];
+                    const languagesHtml = Object.keys(repoLanguages).map(lang => {
+                        const iconClass = languageIcons[lang] || languageIcons['Default'];
+                        return `<div class="flex items-center text-xs font-semibold text-gray-300" title="${lang}"><i class="${iconClass} colored text-lg"></i></div>`;
+                    }).join('');
+
+                    const topicsHtml = repo.topics.map(topic => {
+                        const skill = topic.toLowerCase();
+                        const details = techDetails[skill] || { name: topic, color: '#4A5568', icon: null };
+                        const textColor = (details.color === '#FFFFFF' || details.color === '#FCC624') ? '#1a1a1a' : '#FFFFFF';
+                        return `
+                            <div class="flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs"
+                                 style="background-color: ${details.color}20; border: 1px solid ${details.color}80;">
+                                ${details.icon ? `<i class="${details.icon}" style="color: ${details.color};"></i>` : ''}
+                                <span class="font-medium" style="color: ${textColor};">
+                                    ${details.name}
+                                </span>
+                            </div>`;
+                    }).join('');
+
+                    const projectCard = `
+                        <div class="group bg-gray-900/50 rounded-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 flex flex-col border border-gray-800/50">
+                            <div class="w-full h-48 bg-cover bg-center" style="background-image: url('https://raw.githubusercontent.com/${githubUsername}/${repo.name}/${repo.default_branch}/imagens/capa.png'), url('https://placehold.co/600x400/e0e0e0/4A00E0?text=${repo.name.replace(/-/g, '+')}')"></div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white mb-2">${repo.name.replace(/[-_]/g, ' ')}</h3>
+                                    <p class="text-gray-400 mb-4 text-sm min-h-[40px]">${repo.description || 'Sem descrição.'}</p>
+                                </div>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    ${topicsHtml}
+                                </div>
+                                <div class="mt-auto pt-4 border-t border-gray-700/50">
+                                    <div class="flex justify-end items-center">
+                                        <div class="flex items-center space-x-3">
+                                            ${languagesHtml || ''}
+                                            <a href="${repo.html_url}" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300" title="Ver no GitHub"><i data-lucide="github" class="w-5 h-5"></i></a>
+                                            ${repo.homepage ? `<a href="${repo.homepage}" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300" title="Ver deploy"><i data-lucide="external-link" class="w-5 h-5"></i></a>` : ''}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+                    projectsContainer.innerHTML += projectCard;
+                });
+                lucide.createIcons();
+            }
+
+            async function fetchGithubData() {
+                try {
+                    const cachedData = sessionStorage.getItem(cacheKey);
+                    if (cachedData) {
+                        const { timestamp, data } = JSON.parse(cachedData);
+                        if (Date.now() - timestamp < cacheDuration) {
+                            console.log("A carregar dados do cache.");
+                            renderData(data);
+                            return;
+                        }
+                    }
+
+                    console.log("A buscar novos dados do GitHub.");
+                    const reposResponse = await fetch(`https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=6`);
+                    if (!reposResponse.ok) {
+                        if (reposResponse.status === 403 && reposResponse.headers.get('X-RateLimit-Remaining') === '0') {
+                            throw new Error('Limite de requisições da API do GitHub atingido. A carregar dados de cache, se disponíveis.');
+                        }
+                        throw new Error('Não foi possível buscar os repositórios do GitHub.');
+                    }
+                    const repos = await reposResponse.json();
+
+                    const dataPromises = repos.map(repo => fetch(repo.languages_url).then(res => res.ok ? res.json() : {}));
+                    const allLanguages = await Promise.all(dataPromises);
+
+                    const dataToCache = { repos, allLanguages };
+                    sessionStorage.setItem(cacheKey, JSON.stringify({ timestamp: Date.now(), data: dataToCache }));
+
+                    renderData(dataToCache);
+
+                } catch (error) {
+                    console.error(error);
+                    const cachedData = sessionStorage.getItem(cacheKey);
+                    if (cachedData) {
+                        console.warn("Falha ao buscar novos dados, a usar dados do cache como fallback.");
+                        const { data } = JSON.parse(cachedData);
+                        renderData(data);
+                    } else {
+                        const errorMessage = error.message.includes('Limite de requisições') ? error.message : 'Erro ao carregar os dados do GitHub. Tente novamente mais tarde.';
+                        projectsContainer.innerHTML = `<p class="text-center text-red-400 col-span-full">${errorMessage}</p>`;
+                        skillsContainer.innerHTML = `<p class="text-center text-red-400">Não foi possível carregar as habilidades.</p>`;
+                    }
+                }
+            }
+            fetchGithubData();
+        });
+    </script>
+</body>
+</html>
+
